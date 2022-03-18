@@ -17,7 +17,7 @@ import {
 } from "./weather.actions";
 import {WeatherForecastApiService} from "@bp/weather-forecast/services";
 import {select, Store} from "@ngrx/store";
-import {selectCurrentLocation, selectCurrentPeriod, selectHourlyWeatherHashTable} from "./weather.selectors";
+import {selectCurrentLocation, selectCurrentPeriod, selectDailyWeatherHashTable, selectHourlyWeatherHashTable} from "./weather.selectors";
 import {WeatherState} from "./weather.reducer";
 import {ForecastLocationImpl, PERIOD} from "@bp/weather-forecast/models";
 
@@ -41,7 +41,7 @@ export class WeatherEffects {
 	loadDailyWeatherForLocation$ = createEffect(() =>
 		this.actions$.pipe(
 			ofType<ReturnType<typeof loadDailyWeatherForLocation>>(loadDailyWeatherForLocation),
-			withLatestFrom(this.store.pipe(select(selectHourlyWeatherHashTable))),
+			withLatestFrom(this.store.pipe(select(selectDailyWeatherHashTable))),
 			filter(([{location}, hashTable]) => !hashTable[location.hash]),
 			switchMap(([{location}]) =>
 				this.weatherForecastApiService.getDailyForecast(location).pipe(
