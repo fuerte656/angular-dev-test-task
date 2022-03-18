@@ -3,8 +3,7 @@ import {FormControl} from "@angular/forms";
 import {debounceTime, distinctUntilChanged, filter, map, noop, Observable, Subject, switchMap, takeUntil, tap} from "rxjs";
 import {WeatherForecastApiService} from "@bp/weather-forecast/services";
 import {Store} from "@ngrx/store";
-import {WeatherState} from "@bp/weather-forecast/store";
-import {setCurrentLocation} from "@bp/weather-forecast/store";
+import {WeatherState, setCurrentLocation} from "@bp/weather-forecast/store";
 import {ForecastLocationImpl} from "@bp/weather-forecast/models";
 import {ActivatedRoute, Router} from "@angular/router";
 
