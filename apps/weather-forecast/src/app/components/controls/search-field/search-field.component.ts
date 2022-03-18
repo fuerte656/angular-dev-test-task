@@ -45,7 +45,7 @@ export class SearchFieldComponent implements OnDestroy {
 	private initAutocompleteControl(): Observable<ForecastLocationImpl[]> {
 		return this.searchFieldControl.valueChanges
 			.pipe(
-				filter(value => value && value.length > 2),
+				filter(value => value && value.length > MIN_SEARCH_CHARACTER_COUNT),
 				distinctUntilChanged(),
 				debounceTime(500),
 				switchMap(value => this.apiService.getLocations(value))
