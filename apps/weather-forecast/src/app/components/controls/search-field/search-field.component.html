@@ -1,0 +1,17 @@
+<input
+	class="search-filed"
+	type="text"
+	placeholder="start typing..."
+	matInput
+	[formControl]="searchFieldControl"
+	[matAutocomplete]="auto"
+/>
+<mat-autocomplete
+	#auto="matAutocomplete"
+	(optionSelected)="onSelect($event.option.value)"
+	[displayWith]="displayLocationWith"
+>
+	<mat-option *ngFor="let location of locations$ | async" [value]="location">
+		{{ displayLocationWith(location) }}
+	</mat-option>
+</mat-autocomplete>

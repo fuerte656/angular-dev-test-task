@@ -1,0 +1,49 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table">
+	<ng-container matColumnDef="city">
+		<th mat-header-cell *matHeaderCellDef>City name</th>
+		<td mat-cell *matCellDef="let element">{{ element.city }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="hour3">
+		<th mat-header-cell *matHeaderCellDef>03:00</th>
+		<td mat-cell *matCellDef="let element">{{ element.hour3 }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="hour6">
+		<th mat-header-cell *matHeaderCellDef>06:00</th>
+		<td mat-cell *matCellDef="let element">{{ element.hour6 }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="hour9">
+		<th mat-header-cell *matHeaderCellDef>09:00</th>
+		<td mat-cell *matCellDef="let element">{{ element.hour9 }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="hour12">
+		<th mat-header-cell *matHeaderCellDef>12:00</th>
+		<td mat-cell *matCellDef="let element">{{ element.hour12 }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="hour15">
+		<th mat-header-cell *matHeaderCellDef>15:00</th>
+		<td mat-cell *matCellDef="let element">{{ element.hour15 }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="hour18">
+		<th mat-header-cell *matHeaderCellDef>18:00</th>
+		<td mat-cell *matCellDef="let element">{{ element.hour18 }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="hour21">
+		<th mat-header-cell *matHeaderCellDef>21:00</th>
+		<td mat-cell *matCellDef="let element">{{ element.hour21 }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="hour24">
+		<th mat-header-cell *matHeaderCellDef>24:00</th>
+		<td mat-cell *matCellDef="let element">{{ element.hour24 }}</td>
+	</ng-container>
+
+	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+	<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
