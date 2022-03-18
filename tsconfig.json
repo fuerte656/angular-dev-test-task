@@ -2,9 +2,11 @@
 	"compileOnSave": false,
 	"compilerOptions": {
 		"paths": {
-			"@bp/line-chart/models": ["libs/line-chart/models/src/index.ts"],
-			"@bp/line-chart/services": ["libs/line-chart/services/src/index.ts"],
-			"@bp/weather-forecast/services": ["libs/weather-forecast/services/src/index.ts"]
+			"@bp/weather-forecast/services": ["libs/weather-forecast/services/src/index.ts"],
+			"@bp/weather-forecast/models": ["libs/weather-forecast/models/src/index.ts"],
+			"@bp/weather-forecast/store": ["libs/weather-forecast/store/src/index.ts"],
+			"rxjs": ["node_modules/rxjs"],
+			"rxjs/*": ["node_modules/rxjs/*"]
 		},
 		"baseUrl": ".",
 		"rootDir": ".",

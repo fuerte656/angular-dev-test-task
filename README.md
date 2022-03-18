@@ -3,13 +3,13 @@
 Please, put the solution on GitHub and send the link back via email.
 Enjoy!
 
-# The day to day task: weather forecast
+# The day to day task: weatherReducer forecast
 
-Using the free open weather map two API endpoints (the key is on the weather service)
+Using the free open weatherReducer map two API endpoints (the key is on the weatherReducer service)
 https://openweathermap.org/api/one-call-api
 https://openweathermap.org/api/geocoding-api
 
--   Build an application that allows you to search the weather forecast hourly or daily for a city.
+-   Build an application that allows you to search the weatherReducer forecast hourly or daily for a city.
 -   The UI has a search box and two filter options, `hourly` and `daily`, and a table.
 -   When a new city is searched, we need first to get its coordinates using `http://api.openweathermap.org/geo/1.0/direct?q={city name}&limit=1&appid={API key}` and then for the hourly mode make a call to `https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude=current,minutely,daily,alerts&appid={API key}`, and for the daily mode `https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude=current,minutely,hourly,alerts&appid={API key}` and add it to a city table.
 -   When no city is found, we should reflect it.
@@ -23,19 +23,19 @@ https://openweathermap.org/api/geocoding-api
 
 Hourly Cities Mode
 
-| City Name | 03:00 | 06:00 | 09:00 | 12:00 |  15:00 | 18:00 | 21:00 | 24:00 |
-|-----------|-------|-------|-------|-------|--------|-------|-------|-------|
-| New York  |  15°  |  15°  |  15°  |  15°  |   15°  |  15°  |  15°  |  15°  |
-| London    |  15°  |  15°  |  15°  |  15°  |   15°  |  15°  |  15°  |  15°  |
-| Limassol  |  15°  |  15°  |  15°  |  15°  |   15°  |  15°  |  15°  |  15°  |
+| City Name | 03:00 | 06:00 | 09:00 | 12:00 | 15:00 | 18:00 | 21:00 | 24:00 |
+| --------- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| New York  | 15°   | 15°   | 15°   | 15°   | 15°   | 15°   | 15°   | 15°   |
+| London    | 15°   | 15°   | 15°   | 15°   | 15°   | 15°   | 15°   | 15°   |
+| Limassol  | 15°   | 15°   | 15°   | 15°   | 15°   | 15°   | 15°   | 15°   |
 
 Daily Cities Mode
 
-| City Name |  Mo  |  Tu  |  We  |  Th  |   Fr  |  Sa  |  Su  |
-|-----------|------|------|------|------|-------|------|------|
-| New York  |  15° |  15° |  15° |  15° |   15° |  15° |  15° |
-| London    |  15° |  15° |  15° |  15° |   15° |  15° |  15° |
-| Limassol  |  15° |  15° |  15° |  15° |   15° |  15° |  15° |
+| City Name | Mo  | Tu  | We  | Th  | Fr  | Sa  | Su  |
+| --------- | --- | --- | --- | --- | --- | --- | --- |
+| New York  | 15° | 15° | 15° | 15° | 15° | 15° | 15° |
+| London    | 15° | 15° | 15° | 15° | 15° | 15° | 15° |
+| Limassol  | 15° | 15° | 15° | 15° | 15° | 15° | 15° |
 
 # This project was generated using [Nx](https://nx.dev).
 
