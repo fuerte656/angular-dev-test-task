@@ -1,8 +1,10 @@
 import {createAction, props} from '@ngrx/store';
-import {PERIOD} from "@bp/weather-forecast/models";
-import {ForecastLocationImpl} from "@bp/weather-forecast/models";
-import {HourlySimpleWeatherForecast} from "@bp/weather-forecast/models";
-import {DailySimpleWeatherForecast} from "@bp/weather-forecast/models";
+import {
+	PERIOD,
+	ForecastLocationImpl,
+	HourlySimpleWeatherForecast,
+	DailySimpleWeatherForecast
+} from "@bp/weather-forecast/models";
 
 export const loadHourlyWeatherForLocation = createAction(
 	'[weather] Load hourly weather for location',
