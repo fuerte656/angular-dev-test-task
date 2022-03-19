@@ -1,5 +1,5 @@
-import {ForecastLocation} from "../../../models/src/lib/forecast-location";
-import {PERIOD} from "../../../models/src/lib/period";
+import {ForecastLocation, PERIOD} from "@bp/weather-forecast/models";
+
 
 const FORECAST_BASE_URL = "http://api.openweathermap.org";
 const FORECAST_URL = (location: ForecastLocation, apiKey: string, excludePeriod: PERIOD) =>

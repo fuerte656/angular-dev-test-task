@@ -2,12 +2,14 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map, Observable} from "rxjs";
 import {DAILY_FORECAST_URL, HOURLY_FORECAST_URL, LOCATIONS_URL} from "./url_constants";
-import {ForecastLocation} from "../../../models/src/lib/forecast-location";
-import {HourlyWeatherForecast} from "../../../models/src/lib/hourly-weather-forecast";
-import {DailyWeatherForecast} from "../../../models/src/lib/daily-weather-forecast";
-import {ForecastLocationImpl} from "../../../models/src/lib/forecast-location-impl";
-import {HourlySimpleWeatherForecast} from "../../../models/src/lib/hourly-simple-weather-forecast";
-import {DailySimpleWeatherForecast} from "../../../models/src/lib/daily-simple-weather-forecast";
+import {
+	DailySimpleWeatherForecast,
+	DailyWeatherForecast,
+	ForecastLocation,
+	ForecastLocationImpl,
+	HourlySimpleWeatherForecast,
+	HourlyWeatherForecast
+} from "@bp/weather-forecast/models";
 
 @Injectable()
 export class WeatherForecastApiService {
