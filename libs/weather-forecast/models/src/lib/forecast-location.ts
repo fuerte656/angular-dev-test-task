@@ -1,7 +1,7 @@
-export interface ForecastLocation {
+import {Coordinates} from "./coordinates";
+
+export interface ForecastLocation extends Coordinates {
 	country: string;
-	lat: number;
-	lon: number;
 	name: string;
 	state: string;
 }
