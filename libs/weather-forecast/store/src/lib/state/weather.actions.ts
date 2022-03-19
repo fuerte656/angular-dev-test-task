@@ -43,18 +43,6 @@ export const setCurrentPeriod = createAction(
 	props<{ period: PERIOD }>()
 );
 
-export const getLocationsForCity = createAction(
-	'[weather] Get locations for city',
-	props<{ city: string }>()
-);
-export const getLocationsForCitySuccess = createAction(
-	'[weather] Get locations for city success',
-	props<{ locations: ForecastLocationImpl[] }>()
-);
-export const getLocationsForCityFailed = createAction(
-	'[weather] Get locations for city failed',
-	props<{ error: Error }>()
-);
 
 export const refreshForecasts = createAction('[weather] Refresh forecasts');
 

@@ -2,9 +2,6 @@ import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {catchError, filter, map, mapTo, of, switchMap, tap, withLatestFrom} from "rxjs";
 import {
-	getLocationsForCity,
-	getLocationsForCityFailed,
-	getLocationsForCitySuccess,
 	loadDailyWeatherForLocation,
 	loadDailyWeatherForLocationFailed,
 	loadDailyWeatherForLocationSuccess,
@@ -52,19 +49,7 @@ export class WeatherEffects {
 		)
 	);
 
-	getLocationsForCity$ = createEffect(() =>
-		this.actions$.pipe(
-			ofType<ReturnType<typeof getLocationsForCity>>(getLocationsForCity),
-			switchMap(({city}) =>
-				this.weatherForecastApiService.getLocations(city).pipe(
-					map(locations => getLocationsForCitySuccess({locations})),
-					catchError(error => of(getLocationsForCityFailed({error})))
-				)
-			)
-		)
-	);
-
-	paramsChanged$ = createEffect(() =>
+	locationOrPeriodChanged$ = createEffect(() =>
 		this.actions$.pipe(
 			ofType(setCurrentLocation, setCurrentPeriod),
 			mapTo(refreshForecasts())
@@ -75,8 +60,7 @@ export class WeatherEffects {
 		this.actions$.pipe(
 			ofType(
 				loadHourlyWeatherForLocationFailed,
-				loadDailyWeatherForLocationFailed,
-				getLocationsForCityFailed
+				loadDailyWeatherForLocationFailed
 			),
 			tap(({error}) => alert(error))
 		)
