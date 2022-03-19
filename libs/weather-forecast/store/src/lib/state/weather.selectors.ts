@@ -5,42 +5,30 @@ export const selectWeather = createFeatureSelector<WeatherState>(weatherFeature)
 
 export const selectHourlyWeatherHashTable = createSelector(
 	selectWeather,
-	(state: WeatherState) => {
-		return state.hourlyForecasts
-	}
+	(state: WeatherState) => state.hourlyForecasts
 );
 
 export const selectDailyWeatherHashTable = createSelector(
 	selectWeather,
-	(state: WeatherState) => {
-		return state.dailyForecasts
-	}
+	(state: WeatherState) => state.dailyForecasts
 );
 
 export const selectHourlyWeatherList = createSelector(
 	selectWeather,
-	(state: WeatherState) => {
-		return Object.values(state.hourlyForecasts)
-	}
+	(state: WeatherState) => Object.values(state.hourlyForecasts)
 );
 
 export const selectDailyWeatherList = createSelector(
 	selectWeather,
-	(state: WeatherState) => {
-		return Object.values(state.dailyForecasts)
-	}
+	(state: WeatherState) => Object.values(state.dailyForecasts)
 );
 
 export const selectCurrentLocation = createSelector(
 	selectWeather,
-	(state: WeatherState) => {
-		return state.currentLocation;
-	}
+	(state: WeatherState) => state.currentLocation
 );
 
 export const selectCurrentPeriod = createSelector(
 	selectWeather,
-	(state: WeatherState) => {
-		return state.currentPeriod;
-	}
+	(state: WeatherState) => state.currentPeriod
 );
