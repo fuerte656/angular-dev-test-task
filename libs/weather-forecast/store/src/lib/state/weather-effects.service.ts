@@ -64,16 +64,9 @@ export class WeatherEffects {
 		)
 	);
 
-	setCurrentLocation$ = createEffect(() =>
+	paramsChanged$ = createEffect(() =>
 		this.actions$.pipe(
-			ofType<ReturnType<typeof setCurrentLocation>>(setCurrentLocation),
-			mapTo(refreshForecasts())
-		)
-	);
-
-	setCurrentPeriod$ = createEffect(() =>
-		this.actions$.pipe(
-			ofType<ReturnType<typeof setCurrentPeriod>>(setCurrentPeriod),
+			ofType(setCurrentLocation, setCurrentPeriod),
 			mapTo(refreshForecasts())
 		)
 	);
