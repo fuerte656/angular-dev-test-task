@@ -33,6 +33,21 @@ export const loadDailyWeatherForLocationFailed = createAction(
 	props<{ error: Error }>()
 );
 
+export const setCurrentLocationByQuery = createAction(
+	'[weather] Set current location by query',
+	props<{ locationName: string }>()
+);
+
+export const setCurrentLocationByQuerySuccess = createAction(
+	'[weather] Set current location by query success',
+	props<{ location: ForecastLocationImpl }>()
+);
+
+export const setCurrentLocationByQueryFailed = createAction(
+	'[weather] Set current location by query failed',
+	props<{ error: Error }>()
+);
+
 export const setCurrentLocation = createAction(
 	'[weather] Set current location',
 	props<{ location: ForecastLocationImpl }>()

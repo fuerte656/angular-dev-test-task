@@ -1,9 +1,8 @@
 import {Component, OnDestroy} from '@angular/core';
-import {ActivationEnd, Router} from "@angular/router";
-import {Store} from "@ngrx/store";
-import {setCurrentPeriod, WeatherState} from "@bp/weather-forecast/store";
+import {select, Store} from "@ngrx/store";
+import {refreshForecasts, selectCurrentPeriod, setCurrentPeriod, WeatherState} from "@bp/weather-forecast/store";
 import {PERIOD} from "@bp/weather-forecast/models";
-import {filter, map, noop, Subject, takeUntil, tap} from "rxjs";
+import {filter, noop, Subject, takeUntil, tap} from "rxjs";
 import {FormControl} from "@angular/forms";
 
 @Component({
@@ -17,24 +16,18 @@ export class PeriodSelectorComponent implements OnDestroy {
 	public destroyed$: Subject<void> = new Subject<void>();
 
 	constructor(
-		private router: Router,
 		private store: Store<WeatherState>
 	) {
-		this.initFromRoute();
+		this.initFromStore();
 		this.handleSelection();
 	}
 
-	private initFromRoute(): void {
-		this.router.events.pipe(
-			filter(event => event instanceof ActivationEnd),
-			filter((event: any) => event.snapshot.data && event.snapshot.data.period),
-			map((event: any) => event.snapshot.data.period),
-			filter(period => {
-				return period !== this.periodControl.value;
-			}),
-			tap(period => {
-				this.periodControl.setValue(period);
-			}),
+	private initFromStore(): void {
+		this.store.pipe(
+			select(selectCurrentPeriod),
+			filter(period => !!period),
+			filter(period => period !== this.periodControl.value),
+			tap(period => this.periodControl.setValue(period)),
 			takeUntil(this.destroyed$)
 		).subscribe(noop);
 	}
@@ -47,9 +40,8 @@ export class PeriodSelectorComponent implements OnDestroy {
 	}
 
 	private onSelect(period: PERIOD): void {
-		this.router.navigate(["/" + period], {queryParamsHandling: "merge"}).then(() => {
-			this.store.dispatch(setCurrentPeriod({period}));
-		});
+		this.store.dispatch(setCurrentPeriod({period}));
+		this.store.dispatch(refreshForecasts());
 	}
 
 	ngOnDestroy(): void {

@@ -1,11 +1,10 @@
 import {Component, OnDestroy} from '@angular/core';
 import {FormControl} from "@angular/forms";
-import {debounceTime, distinctUntilChanged, filter, map, noop, Observable, Subject, switchMap, takeUntil, tap} from "rxjs";
+import {debounceTime, distinctUntilChanged, filter, noop, Observable, Subject, switchMap, takeUntil, tap} from "rxjs";
 import {WeatherForecastApiService} from "@bp/weather-forecast/services";
-import {Store} from "@ngrx/store";
-import {WeatherState, setCurrentLocation} from "@bp/weather-forecast/store";
+import {select, Store} from "@ngrx/store";
+import {refreshForecasts, selectCurrentLocation, setCurrentLocation, WeatherState} from "@bp/weather-forecast/store";
 import {ForecastLocationImpl} from "@bp/weather-forecast/models";
-import {ActivatedRoute, Router} from "@angular/router";
 
 const MIN_SEARCH_CHARACTER_COUNT = 2;
 
@@ -21,23 +20,20 @@ export class SearchFieldComponent implements OnDestroy {
 
 	constructor(
 		private apiService: WeatherForecastApiService,
-		private router: Router,
-		private activatedRoute: ActivatedRoute,
 		private store: Store<WeatherState>,
 	) {
-		this.initFromRoute();
+		this.initFromStore();
 	}
 
-	private initFromRoute(): void {
-		this.activatedRoute.queryParams.pipe(
-			filter(params => !!params.query && params.query.length > MIN_SEARCH_CHARACTER_COUNT),
-			distinctUntilChanged(),
-			map(params => params.query),
-			switchMap(query => this.apiService.getLocation(query)),
+	private initFromStore(): void {
+		this.store.pipe(
+			select(selectCurrentLocation),
 			filter(location => !!location),
+			filter(period => period !== this.searchFieldControl.value),
 			tap(location => this.searchFieldControl.setValue(location, {emitEvent: false})),
 			tap((location: any) => this.onSelect(location)),
-			takeUntil(this.destroyed$)).subscribe(noop);
+			takeUntil(this.destroyed$)
+		).subscribe(noop);
 	}
 
 
@@ -53,13 +49,8 @@ export class SearchFieldComponent implements OnDestroy {
 
 
 	public onSelect(selectedLocation: ForecastLocationImpl): void {
-		this.router.navigate([], {
-			relativeTo: this.activatedRoute,
-			queryParamsHandling: "merge",
-			queryParams: {query: selectedLocation.name}
-		}).then(() => {
-			this.store.dispatch(setCurrentLocation({location: selectedLocation}));
-		});
+		this.store.dispatch(setCurrentLocation({location: selectedLocation}));
+		this.store.dispatch(refreshForecasts());
 	}
 
 
